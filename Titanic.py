@@ -168,18 +168,20 @@ X_train_SVM = X_train.drop(['PClass_age', 'Sex_age'], axis = 1)
 X_test_SVM = X_test.drop(['PClass_age', 'Sex_age'], axis = 1)
 X_train_SVM['Age'] = X_train_SVM['Age']/X_train_SVM['Age'].max()
 X_test_SVM['Age'] = X_test_SVM['Age']/X_train_SVM['Age'].max()
+X_train_SVM['FareCat'] = X_train_SVM['FareCat']/X_train_SVM['FareCat'].max()
+X_test_SVM['FareCat'] = X_test_SVM['FareCat']/X_train_SVM['FareCat'].max()
 
 param_grid_SVC = {
-     'kernel': ['linear','rbf'],
-    'C': [1,10,15,20],
+    'kernel': ['linear'],
+    'C': [1,10,15,20 ],
     #'gamma': ['scale', 0.1, 0.01],
-    #'class_weight': [None, 'balanced', {0:1, 1:1.2}]
+    'class_weight': [None, 'balanced', {0:1, 1:1.2}]
 }
 grid_search = GridSearchCV(svm.SVC(random_state=42), param_grid_SVC, cv=15, scoring='accuracy')
 grid_search.fit(X_train_SVM, y_train)
 print("Meilleurs paramètres :", grid_search.best_params_)
 
-SVC = svm.SVC(probability=True, kernel='rbf', C=10, gamma=0.1, random_state=42) #, class_weight='balanced')
+SVC = svm.SVC(probability=True, kernel='linear', C=1, random_state=42, class_weight='balanced')
 SVC.fit(X_train_SVM, y_train)
 
 MyFunction.AffichageRes(SVC, X_train_SVM, X_test_SVM, y_train, y_test)
