@@ -18,12 +18,12 @@ The project includes:
 |-----------------------|-----------------|----------|---------|-----------|--------|---------------|---------------|
 | DecisionTree          | 0.822           | 0.769    | 0.813   | 0.807     | 0.733  | 0.053         | 0.813 ± 0.053 |
 | RandomForest          | 0.822           | 0.756    | 0.897   | 0.845     | 0.683  | 0.055         | 0.832 ± 0.055 |
-| SVM                   | 0.613           | 0.080    | 0.530   | 1.000     | 0.042  | 0.057         | 0.821 ± 0.057 |
+| SVM                   | 0.815           | 0.772    | 0.796   | 0.769     | 0.775  | 0.091         | 0.783 ± 0.091 |
 | XGBoost               | 0.828           | 0.769    | 0.889   | 0.842     | 0.708  | 0.056         | 0.832 ± 0.056 |
 | KNN                   | 0.801           | 0.757    | 0.857   | 0.748     | 0.767  | 0.053         | 0.818 ± 0.053 |
 
 ### **Quick Analysis of Results**
 - **XGBoost** is the best model (test accuracy=0.828, CV=0.832), followed by **DecisionTree** and **RandomForest** (0.822 test).
-- **SVM** performs poorly (accuracy=0.613, recall=0.042) no matter the hyperparameters.
+- **SVM** performs poorly when using the cross-validation, a rbf kernel seems to always predict died (precision=1 and F1=0)
 - **KNN** has good recall (0.767) but lower test accuracy (0.801).
 - **RandomForest** has an excellent ROC-AUC (0.897) but limited recall (0.683), suggesting issues with detecting survivors due to class imbalance (~60% non-survivors, 40% survivors).
