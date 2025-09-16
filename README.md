@@ -24,6 +24,6 @@ The project includes:
 
 ### **Quick Analysis of Results**
 - **XGBoost** is the best model (test accuracy=0.828, CV=0.832), followed by **DecisionTree** and **RandomForest** (0.822 test).
-- **SVM** performs poorly (accuracy=0.613, recall=0.042).
+- **SVM** performs poorly (accuracy=0.613, recall=0.042) no matter the hyperparameters.
 - **KNN** has good recall (0.767) but lower test accuracy (0.801).
 - **RandomForest** has an excellent ROC-AUC (0.897) but limited recall (0.683), suggesting issues with detecting survivors due to class imbalance (~60% non-survivors, 40% survivors).
